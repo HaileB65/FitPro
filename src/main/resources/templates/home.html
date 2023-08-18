@@ -16,15 +16,17 @@
     </div>
 </div>
 
+//TO DO
+// get bicep exercises function to display http response
+
 <div id='container'></div>
 
 <div id='container2'></div>
 
 <script>
-    let d = new Date();
-
     function getBicepExercises() {
-        var div = document.getElementById('container2');
+        var div2 = document.getElementById('container2');
+
         const data = null;
 
         const xhr2 = new XMLHttpRequest();
@@ -41,13 +43,18 @@
         xhr2.setRequestHeader('X-RapidAPI-Host', 'exercises-by-api-ninjas.p.rapidapi.com');
 
         xhr2.send(data);
+
+        div2.innerHTML += console.log(xhr2.responseText);
     }
 
     function appendHtml() {
-            var div = document.getElementById('container');
-            div.innerHTML += "<p>Today's date is " + d + "</p>";
-            div.innnerHTML += getBicepExercises();
+         let d = new Date();
+         var div = document.getElementById('container');
+         div.innerHTML += "<h1>Today's date is " + d + "</h1>";
+
+         getBicepExercises();
     }
+
     window.onload = appendHtml;
 </script>
 
