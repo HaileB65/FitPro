@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,5 +16,41 @@
     </div>
 </div>
 
+<div id='container'></div>
+
+<div id='container2'></div>
+
+<script>
+    let d = new Date();
+
+    function getBicepExercises() {
+        var div = document.getElementById('container2');
+        const data = null;
+
+        const xhr2 = new XMLHttpRequest();
+        xhr2.withCredentials = true;
+
+        xhr2.addEventListener('readystatechange', function () {
+	        if (this.readyState === this.DONE) {
+		        console.log(this.responseText);
+	        }
+        });
+
+        xhr2.open('GET', 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=biceps');
+        xhr2.setRequestHeader('X-RapidAPI-Key', 'b61a5a7435msh866977d946919afp1c7620jsn64158120fd4f');
+        xhr2.setRequestHeader('X-RapidAPI-Host', 'exercises-by-api-ninjas.p.rapidapi.com');
+
+        xhr2.send(data);
+    }
+
+    function appendHtml() {
+            var div = document.getElementById('container');
+            div.innerHTML += "<p>Today's date is " + d + "</p>";
+            div.innnerHTML += getBicepExercises();
+    }
+    window.onload = appendHtml;
+</script>
+
+<!--<script th:src="@{/js/script.js}"></script>-->
 </body>
 </html>
