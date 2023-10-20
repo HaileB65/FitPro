@@ -10,54 +10,8 @@
 </head>
 <body>
 
-<div class="row justify-content-center align-item-middle">
-    <div class="col-auto my-4">
-        <h1>FitPro</h1>
-    </div>
-</div>
+<main id="root"></main>
 
-//TO DO
-// get bicep exercises function to display http response
-
-<div id='container'></div>
-
-<div id='container2'></div>
-
-<script>
-    function getBicepExercises() {
-        var div2 = document.getElementById('container2');
-
-        const data = null;
-
-        const xhr2 = new XMLHttpRequest();
-        xhr2.withCredentials = true;
-
-        xhr2.addEventListener('readystatechange', function () {
-	        if (this.readyState === this.DONE) {
-		        console.log(this.responseText);
-	        }
-        });
-
-        xhr2.open('GET', 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=biceps');
-        xhr2.setRequestHeader('X-RapidAPI-Key', 'b61a5a7435msh866977d946919afp1c7620jsn64158120fd4f');
-        xhr2.setRequestHeader('X-RapidAPI-Host', 'exercises-by-api-ninjas.p.rapidapi.com');
-
-        xhr2.send(data);
-
-        div2.innerHTML += console.log(xhr2.responseText);
-    }
-
-    function appendHtml() {
-         let d = new Date();
-         var div = document.getElementById('container');
-         div.innerHTML += "<h1>Today's date is " + d + "</h1>";
-
-         getBicepExercises();
-    }
-
-    window.onload = appendHtml;
-</script>
-
-<!--<script th:src="@{/js/script.js}"></script>-->
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>
