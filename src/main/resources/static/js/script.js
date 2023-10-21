@@ -1,1 +1,0 @@
-const document = document.getElementById("root").innerText("FitPro");

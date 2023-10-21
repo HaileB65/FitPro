@@ -10,8 +10,24 @@
 </head>
 <body>
 
-<main id="root"></main>
+<div class="row">
+    <div class="col" id="headerDiv">
+        <h1 id="header"></h1>
+    </div>
+</div>
+<br>
 
-<script th:src="@{/js/script.js}"></script>
+<div>
+    <p>Enter the muscle group you would like exercises for.</p>
+
+    <input type="text" id="myExercise" value="Muscle group">
+
+    <button onclick="getExercises()">Get Exercises</button>
+</div>
+
+<br>
+<p id="demo2"></p>
+
+<script th:src="@{script.js}"></script>
 </body>
 </html>
