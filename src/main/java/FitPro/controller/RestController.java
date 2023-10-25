@@ -12,7 +12,7 @@ public class RestController {
     ExerciseAPIService exerciseAPIService;
 
     @PostMapping("/exercises")
-    public ResponseEntity getExercises() {
+    public ResponseEntity<?> getExercises() {
         try {
             return ResponseEntity.ok(exerciseAPIService.getExercise());
         } catch (Exception ex) {
