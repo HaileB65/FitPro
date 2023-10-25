@@ -1,6 +1,6 @@
 package FitPro.controller;
 
-import FitPro.services.ExerciseAPIService;
+import FitPro.ExerciseAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ public class RestController {
     @PostMapping("/exercises")
     public ResponseEntity getExercises() {
         try {
-            return ResponseEntity.ok(ExerciseAPIService.getExercise());
+            return ResponseEntity.ok(exerciseAPIService.getExercise());
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
