@@ -22,19 +22,18 @@ public class ExerciseAPIService {
     RestTemplate restTemplate;
 
     public ExerciseAPIResponse getExercise(){
-
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Rapidapi-Host", "exercises-by-api-ninjas.p.rapidapi.com");
         headers.add("X-Rapidapi-Key", "b61a5a7435msh866977d946919afp1c7620jsn64158120fd4f");
         headers.add("Content-Type", "application/x-www-form-urlencoded");
 
-//        String url = "https://api-ninjas.p.rapidapi.com/v1/exercises?muscle=abdominals";
-        String url = "https://api-ninjas.p.rapidapi.com/v1/exercises";
+        String url = "https://api-ninjas.p.rapidapi.com/v1/exercises?muscle=abdominals";
+//        String url = "https://api-ninjas.p.rapidapi.com/v1/exercises";
 
-        String uri = UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("muscle", "abdominals")
-                .encode()
-                .toUriString();
+//        String uri = UriComponentsBuilder.fromHttpUrl(url)
+//                .queryParam("muscle", "abdominals")
+//                .encode()
+//                .toUriString();
 
         String body = "";
 
@@ -42,9 +41,8 @@ public class ExerciseAPIService {
 
         //TODO
         // Make rest template work
-        ResponseEntity<ExerciseAPIResponse> response = restTemplate.exchange(uri, HttpMethod.GET, request, ExerciseAPIResponse.class);
+        ResponseEntity<ExerciseAPIResponse> response = restTemplate.exchange(url, HttpMethod.GET, request, ExerciseAPIResponse.class);
 
-        response.getBody();
 
         return response.getBody();
     }
