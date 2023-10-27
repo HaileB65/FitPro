@@ -1,5 +1,9 @@
 package FitPro.services;
 
+import FitPro.models.Exercise;
+import jakarta.annotation.PostConstruct;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,11 +13,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ExerciseAPIService {
-    @Autowired
-    RestTemplate restTemplate;
 
     public String getExercises() throws IOException, InterruptedException {
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
@@ -27,4 +31,22 @@ public class ExerciseAPIService {
 
         return response.body();
     }
+
+    @PostConstruct
+    public static void createJSONObjectList(){
+        JSONArray jsonArr = new JSONArray("[Your json string array]");
+        List<Exercise> listOfExercises = new ArrayList<>();
+        for (int i = 0; i < jsonArr.length(); i++) {
+            JSONObject jsonObj = jsonArr.getJSONObject(i);
+            Exercise exercise = new Exercise();
+            exercise.setName(jsonObj.getString("name"));
+            exercise.setType(jsonObj.getString("type"));
+            exercise.setMuscle(jsonObj.getString("muscle"));
+            exercise.setEquipment(jsonObj.getString("equipment"));
+            exercise.setInstructions(jsonObj.getString("instructions"));
+            listOfExercises.add(exercise);
+        }
+        System.out.println(listOfExercises);
+    }
+
 }
