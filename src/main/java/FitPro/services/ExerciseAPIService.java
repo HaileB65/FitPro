@@ -1,4 +1,4 @@
-package FitPro;
+package FitPro.services;
 
 import FitPro.models.ExerciseAPIResponse;
 import jakarta.annotation.PostConstruct;
