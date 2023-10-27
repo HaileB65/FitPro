@@ -15,10 +15,11 @@
         <h1 id="header"></h1>
     </div>
 </div>
+
 <br>
 
 <div>
-    <p>Enter the muscle group you would like exercises for.</p>
+    <p id="paragraph"></p>
 
     <input type="text" id="myExercise" value="Muscle group">
 
@@ -26,8 +27,13 @@
 </div>
 
 <br>
+
 <p id="demo2"></p>
 
 <script th:src="@{script.js}"></script>
+<script>
+    var message = "[[${exercises}]]";
+    console.log(message);
+</script>
 </body>
 </html>
