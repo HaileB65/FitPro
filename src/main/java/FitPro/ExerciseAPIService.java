@@ -1,6 +1,7 @@
 package FitPro;
 
 import FitPro.models.ExerciseAPIResponse;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -14,13 +15,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.web.util.UriComponentsBuilder;
-
 @Service
 public class ExerciseAPIService {
     @Autowired
     RestTemplate restTemplate;
 
+    @PostConstruct
     public ExerciseAPIResponse getExercise(){
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Rapidapi-Host", "exercises-by-api-ninjas.p.rapidapi.com");
@@ -35,9 +35,7 @@ public class ExerciseAPIService {
 //                .encode()
 //                .toUriString();
 
-        String body = "";
-
-        HttpEntity<String> request = new HttpEntity<>(body, headers);
+        HttpEntity<String> request = new HttpEntity<>(headers);
 
         //TODO
         // Make rest template work

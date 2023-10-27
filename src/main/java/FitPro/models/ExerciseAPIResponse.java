@@ -3,10 +3,10 @@ package FitPro.models;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
+import java.util.List;
 
 @Getter
 @Setter
 public class ExerciseAPIResponse {
-    HashMap<Integer, Object> exercises;
+    List<Exercise> exercises;
 }
