@@ -11,6 +11,10 @@ import java.io.IOException;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+    //TODO
+    // Fix BeanCreationException error when trying to autowire the exerciseAPIService.
+    // U.
+    // se @ComponentScan(basePackages = {"com.baeldung.dependency.exception"}) annotation in spring boot class?
     @Autowired
     ExerciseAPIService exerciseAPIService;
 
