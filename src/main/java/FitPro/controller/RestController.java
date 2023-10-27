@@ -14,7 +14,7 @@ public class RestController {
     @PostMapping("/exercises")
     public ResponseEntity<?> getExercises() {
         try {
-            return ResponseEntity.ok(exerciseAPIService.getExercise());
+            return ResponseEntity.ok(exerciseAPIService);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
