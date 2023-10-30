@@ -4,9 +4,6 @@ import FitPro.models.Exercise;
 import FitPro.repositories.ExerciseRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.PostConstruct;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +13,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExerciseAPIService {
@@ -35,7 +33,8 @@ public class ExerciseAPIService {
         String exercisesJSONString = response.body();
 
         ObjectMapper mapper = new ObjectMapper();
-        List<Exercise> exerciseList = mapper.readValue(exercisesJSONString, new TypeReference<List<Exercise>>(){});
+        List<Exercise> exerciseList = mapper.readValue(exercisesJSONString, new TypeReference<List<Exercise>>() {
+        });
 
         System.out.println(exerciseList);
 
@@ -47,4 +46,17 @@ public class ExerciseAPIService {
         return exercise;
     }
 
+    public void saveExercises(List<Exercise> exercises) {
+        for (Exercise exercise : exercises) {
+            exerciseRepository.save(exercise);
+        }
+    }
+
+    public Exercise getExerciseByName(String name) throws Exception {
+        Optional<Exercise> exercise = exerciseRepository.findByName(name);
+
+        if (exercise.isPresent()) {
+            return exercise.get();
+        } else throw new Exception("Exercise name not found");
+    }
 }

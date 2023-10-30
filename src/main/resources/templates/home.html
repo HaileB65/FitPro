@@ -19,21 +19,38 @@
 <br>
 
 <div>
+
     <p id="paragraph"></p>
 
     <input type="text" id="myExercise" value="Muscle group">
 
     <button onclick="getExercises()">Get Exercises</button>
+
+    <p id="demo"></p>
+
+    <p id="exercise"></p>
+
+    <button onclick="addTable(ORDER.orders)">Click me</button>
+
+    <table>
+        <th></th>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
 </div>
 
-<br>
-
-<p id="demo2"></p>
-
 <script>
-    var message = "[[${exercises}]]";
-    console.log(message);
+    var exercises = "[[${exercises}]]";
+    console.log(exercises);
+
+
+    var exercise = "[[${exercise}]]";
+    console.log(exercise);
+    document.getElementById("exercise").innerHTML = exercise;
+
 </script>
+
 <script th:src="@{script.js}"></script>
 </body>
 </html>

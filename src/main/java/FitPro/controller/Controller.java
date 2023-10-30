@@ -2,16 +2,10 @@ package FitPro.controller;
 
 
 import FitPro.models.Exercise;
-import FitPro.models.ExerciseAPIResponse;
-import FitPro.repositories.ExerciseRepository;
 import FitPro.services.ExerciseAPIService;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,20 +16,36 @@ public class Controller {
     ExerciseAPIService exerciseAPIService;
 
     @GetMapping
-    public String showHomepage(Model model) throws IOException, InterruptedException {
-        List<Exercise> exercises = exerciseAPIService.getExercises();
+    public String showHomepage(Model model) throws Exception {
+//        Exercise exercise = exerciseAPIService.getExerciseByName("Incline Hammer Curls");
 
-        model.addAttribute("exercises", exercises);
+        Exercise exercise1 = Exercise.builder()
+                .name("Bench Press")
+                .difficulty("beginner")
+                .equipment("Bell bar")
+                .instructions("Press the bar up with your arms.")
+                .muscle("Chest")
+                .type("Strength")
+                .build();
 
+        System.out.println(exercise1.toString());
+
+        model.addAttribute("exercise", exercise1);
+
+        //TODO
+        // create table to display exercises
+
+        //TODO
+        // display exercises on home page.
         return "home";
     }
 
-    @PostMapping("/saveExercises")
-    public String saveExercises(@ModelAttribute("exercises") List<Exercise> exercises) {
-        for(Exercise exercise: exercises) {
-            exerciseAPIService.saveExercise(exercise);
-        }
+    @GetMapping("/saveExercises")
+    public String showExercises(Model model) throws IOException, InterruptedException {
+        List<Exercise> exercises = exerciseAPIService.getExercises();
+        exerciseAPIService.saveExercises(exercises);
 
-        return "redirect:/myTrips";
+        model.addAttribute("exercises", exercises);
+        return "home";
     }
 }
