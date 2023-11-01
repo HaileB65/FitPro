@@ -20,24 +20,19 @@
 
 <div>
 
-    <p id="paragraph"></p>
+    <!-- <p id="paragraph"></p>
 
     <input type="text" id="myExercise" value="Muscle group">
-
     <button onclick="getExercises()">Get Exercises</button>
 
     <p id="demo"></p>
 
-    <p id="exercise"></p>
+    <p id="exercise"></p> -->
 
-    <button onclick="addTable(ORDER.orders)">Click me</button>
+</div>
 
-    <table>
-        <th></th>
-        <tr>
-            <td></td>
-        </tr>
-    </table>
+<div>
+    <table id="table"></table>
 </div>
 
 <script>
@@ -47,10 +42,10 @@
 
     var exercise = "[[${exercise}]]";
     console.log(exercise);
-    document.getElementById("exercise").innerHTML = exercise;
-
+    // document.getElementById("exercise").innerHTML = exercise;
 </script>
-
+<script th:src="@{build-table.js}"></script>
 <script th:src="@{script.js}"></script>
+
 </body>
 </html>
