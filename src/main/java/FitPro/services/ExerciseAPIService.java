@@ -4,6 +4,9 @@ import FitPro.models.Exercise;
 import FitPro.repositories.ExerciseRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +61,26 @@ public class ExerciseAPIService {
         if (exercise.isPresent()) {
             return exercise.get();
         } else throw new Exception("Exercise name not found");
+    }
+
+    public JSONArray turnJavaObjectsIntoJSON(List<Exercise> exercises) {
+        JSONArray arr = new JSONArray();
+        JSONObject tmp;
+        try {
+            for (int i = 0; i < exercises.size(); i++) {
+                tmp = new JSONObject();
+                tmp.put("Name", exercises.get(i).getName());
+                tmp.put("Difficulty", exercises.get(i).getDifficulty());
+                tmp.put("Equipment", exercises.get(i).getEquipment());
+                tmp.put("Instructions", exercises.get(i).getInstructions());
+                arr.put(tmp);
+            }
+
+//            webView.loadUrl("javascript:fetchFriends(" + arr.toString() + ")");
+        } catch (JSONException e) {
+            //error handling
+        }
+        System.out.println(arr.toString());
+        return arr;
     }
 }
