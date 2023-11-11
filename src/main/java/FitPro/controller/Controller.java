@@ -36,10 +36,10 @@ public class Controller {
 //                .build();
 //        List<Exercise> exerciseList = List.of(new Exercise[]{exercise1, exercise2});
 
-        List<Exercise> exerciseList = exerciseAPIService.getExercises();
-        System.out.println(exerciseList);
-
-        model.addAttribute("exerciseList", exerciseList);
+//        List<Exercise> exerciseList = exerciseAPIService.getExercises();
+//        System.out.println(exerciseList);
+//
+//        model.addAttribute("exerciseList", exerciseList);
 
         return "home";
     }
