@@ -1,13 +1,11 @@
 package FitPro.services;
 
 import FitPro.models.Exercise;
-import FitPro.repositories.ExerciseRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,8 +18,6 @@ import java.util.Optional;
 
 @Service
 public class ExerciseAPIService {
-    @Autowired
-    ExerciseRepository exerciseRepository;
 
     public List<Exercise> getExercises() throws IOException, InterruptedException {
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
@@ -42,25 +38,6 @@ public class ExerciseAPIService {
         System.out.println(exerciseList);
 
         return exerciseList;
-    }
-
-    public Exercise saveExercise(Exercise exercise) {
-        exerciseRepository.save(exercise);
-        return exercise;
-    }
-
-    public void saveExercises(List<Exercise> exercises) {
-        for (Exercise exercise : exercises) {
-            exerciseRepository.save(exercise);
-        }
-    }
-
-    public Exercise getExerciseByName(String name) throws Exception {
-        Optional<Exercise> exercise = exerciseRepository.findByName(name);
-
-        if (exercise.isPresent()) {
-            return exercise.get();
-        } else throw new Exception("Exercise name not found");
     }
 
     public JSONArray turnJavaObjectsIntoJSON(List<Exercise> exercises) {
